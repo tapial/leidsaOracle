@@ -55,7 +55,7 @@ def render(api_base: str):
             try:
                 resp = httpx.post(
                     f"{api_base}/import/scrape/latest",
-                    json={"game_type": game_type},
+                    params={"game_type": game_type},
                     timeout=60,
                 )
                 if resp.status_code == 200:
@@ -91,7 +91,7 @@ def render(api_base: str):
 
     with col3:
         if st.button("Generate Combinations"):
-            st.switch_page("pages/generator")
+            st.info("Select **Generator** in the sidebar to generate combinations.")
 
     # Disclaimer
     st.divider()

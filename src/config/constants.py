@@ -83,7 +83,7 @@ GAME_REGISTRY: dict[str, GameDefinition] = {
         bonus_max=None,
         draw_days=("Wednesday", "Saturday"),
         draw_time="20:55",
-        scraper_path="/leidsa/loto-mas",
+        scraper_path="/leidsa/loto",
     ),
     "loto_mas": GameDefinition(
         code="loto_mas",
