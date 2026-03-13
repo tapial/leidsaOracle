@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.leidsa.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:loteriasdominicanas.com)",
+      "WebFetch(domain:lotteryguru.com)",
+      "WebFetch(domain:lotteryngo.com)",
+      "WebFetch(domain:www.wispwillow.com)",
+      "WebFetch(domain:lottohoy.com)",
+      "WebFetch(domain:lotto-africa.com)",
+      "Bash(python3 -c \":*)",
+      "WebFetch(domain:www.conectate.com.do)",
+      "WebFetch(domain:enloteria.com)",
+      "WebFetch(domain:loterias.do)",
+      "Bash(py -m pip install pytest numpy scipy pandas --quiet)",
+      "Bash(py -m pip install pydantic pydantic-settings --quiet)",
+      "Bash(py -m pytest tests/test_analytics/test_analytics.py tests/test_scoring/test_scoring.py tests/test_validator/test_validator.py tests/test_generator/test_generator.py tests/test_backtesting/test_backtesting.py -v --tb=short)",
+      "Bash(py -m pytest tests/ -v --tb=short)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(where py)",
+      "Bash(where python3)",
+      "Bash(where python)",
+      "Bash(py -m pytest tests/ -v)",
+      "Bash(docker compose build --no-cache)",
+      "Bash(py -c \":*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(py -m pip install streamlit plotly altair)",
+      "Bash(py -m uvicorn src.main:app --host 127.0.0.1 --port 8000)",
+      "Bash(py -m pip install \"uvicorn[standard]\" fastapi)",
+      "Bash(py -c \"from src.main import app; print\\(''App created OK''\\)\")",
+      "Bash(py -m pip install \"sqlalchemy[asyncio]\" asyncpg alembic pydantic-settings httpx beautifulsoup4 lxml python-multipart python-dotenv)",
+      "Bash(gh auth status)",
+      "Bash(where gh)",
+      "Bash(where git)",
+      "Bash(winget install --id GitHub.cli --accept-source-agreements --accept-package-agreements)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status)",
+      "Bash(export PATH=\"/c/Program Files/GitHub CLI:$PATH\")"
+    ]
+  }
+}

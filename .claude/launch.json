@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "api",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "uvicorn", "src.main:app", "--host", "127.0.0.1", "--port", "8000", "--reload"],
+      "port": 8000
+    },
+    {
+      "name": "streamlit",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "streamlit", "run", "src/ui/app.py", "--server.port=8501", "--server.address=127.0.0.1"],
+      "port": 8501
+    }
+  ]
+}

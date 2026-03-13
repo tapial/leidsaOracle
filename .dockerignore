@@ -1,0 +1,47 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.eggs
+dist
+build
+
+# Virtual environments
+.venv
+venv
+env
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Testing & CI
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+
+# Environment files (use docker-compose env instead)
+.env
+.env.local
+
+# Data files (mounted as volumes)
+data/
+
+# Documentation
+*.md
+!README.md
+
+# Claude
+.claude/
+
+# Tasks
+tasks/
