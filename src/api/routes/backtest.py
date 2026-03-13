@@ -82,3 +82,32 @@ async def run_backtest(
         metrics=report["metrics"],
         config=report["config"],
     )
+
+
+@router.get("/results", summary="List backtest results")
+async def list_backtest_results(
+    game_type: str = "loto",
+    limit: int = 10,
+    db: AsyncSession = Depends(get_db),
+):
+    """Return the most recent backtest results for a game type."""
+    results = await BacktestRepository.get_results(db, game_type, limit)
+    return [
+        {
+            "run_id": r.run_id,
+            "run_date": str(r.run_date),
+            "game_type": r.game_type,
+            "train_window_size": r.train_window_size,
+            "test_window_size": r.test_window_size,
+            "number_hit_rate": r.number_hit_rate,
+            "summary": {
+                "total_steps": r.steps_detail.get("total_steps", 0),
+                "number_hit_rate": r.number_hit_rate,
+            },
+            "metrics": {
+                "match_distribution": r.hit_rates,
+            },
+            "config": r.config if hasattr(r, "config") else {},
+        }
+        for r in results
+    ]

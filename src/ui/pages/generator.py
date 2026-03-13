@@ -37,7 +37,7 @@ def render(api_base: str):
         with st.spinner("Generating combinations..."):
             try:
                 resp = httpx.post(
-                    f"{api_base}/combinations/generate",
+                    f"{api_base}/generate",
                     json=request,
                     timeout=120,
                 )

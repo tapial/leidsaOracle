@@ -54,8 +54,8 @@ def render(api_base: str):
         if st.button("Scrape Latest Results"):
             try:
                 resp = httpx.post(
-                    f"{api_base}/scraper/run",
-                    json={"game_type": game_type, "mode": "latest"},
+                    f"{api_base}/import/scrape/latest",
+                    json={"game_type": game_type},
                     timeout=60,
                 )
                 if resp.status_code == 200:
