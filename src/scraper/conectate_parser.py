@@ -132,6 +132,7 @@ class ConectateParser(BaseDrawParser):
 
     # Conectate uses different URL paths than loteriasdominicanas.com.
     _PATH_MAP: dict[str, str] = {
+        "/leidsa/loto": "/loterias/leidsa/loto",
         "/leidsa/loto-mas": "/loterias/leidsa/loto-mas",
         "/leidsa/loto-pool": "/loterias/leidsa/loto-pool",
     }
@@ -271,12 +272,10 @@ class ConectateParser(BaseDrawParser):
                         break
 
         return RawDrawResult(
-            draw_date=draw_date,
+            date_str=draw_date.isoformat(),
             numbers=main_numbers,
-            bonus_number=bonus,
-            game_type=self._game_def.code,
+            bonus=bonus,
             source="scraper",
-            raw_text=block.get_text(" ", strip=True)[:500],
         )
 
     def _parse_table_layout(self, soup: BeautifulSoup) -> list[RawDrawResult]:
@@ -313,12 +312,10 @@ class ConectateParser(BaseDrawParser):
 
                 results.append(
                     RawDrawResult(
-                        draw_date=draw_date,
+                        date_str=draw_date.isoformat(),
                         numbers=main_numbers,
-                        bonus_number=bonus,
-                        game_type=self._game_def.code,
+                        bonus=bonus,
                         source="scraper",
-                        raw_text=row.get_text(" ", strip=True)[:500],
                     )
                 )
 

@@ -497,6 +497,16 @@ class ScraperService:
     # ── Utility ───────────────────────────────────────────────────────
 
     @staticmethod
+    def _parse_date_str(date_str: str) -> datetime.date | None:
+        """Best-effort parse of a date_str to a date object."""
+        for fmt in ("%Y-%m-%d", "%d-%m-%Y", "%d/%m/%Y"):
+            try:
+                return datetime.datetime.strptime(date_str, fmt).date()
+            except ValueError:
+                continue
+        return None
+
+    @staticmethod
     def _filter_by_date_range(
         results: list[RawDrawResult],
         date_from: datetime.date | None,
@@ -505,13 +515,14 @@ class ScraperService:
         """Filter raw results by date bounds (best-effort, skips unparseable dates)."""
         filtered: list[RawDrawResult] = []
         for r in results:
-            if not isinstance(r.draw_date, datetime.date):
-                # If the date is still a string, include it and let normalization handle it.
+            parsed = ScraperService._parse_date_str(r.date_str)
+            if parsed is None:
+                # Can't parse date — include it and let normalization handle it.
                 filtered.append(r)
                 continue
-            if date_from and r.draw_date < date_from:
+            if date_from and parsed < date_from:
                 continue
-            if date_to and r.draw_date > date_to:
+            if date_to and parsed > date_to:
                 continue
             filtered.append(r)
         return filtered
@@ -521,6 +532,7 @@ class ScraperService:
         """Find the oldest date among raw results (best-effort)."""
         dates: list[datetime.date] = []
         for r in results:
-            if isinstance(r.draw_date, datetime.date):
-                dates.append(r.draw_date)
+            parsed = ScraperService._parse_date_str(r.date_str)
+            if parsed is not None:
+                dates.append(parsed)
         return min(dates) if dates else None

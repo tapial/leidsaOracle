@@ -65,6 +65,8 @@ def render(api_base: str):
                         f"Imported: {result.get('draws_imported', 0)}, "
                         f"Skipped: {result.get('draws_skipped', 0)}"
                     )
+                    for err in result.get("errors", []):
+                        st.warning(err)
                 else:
                     st.error(f"Scraper failed: {resp.text}")
             except Exception as e:

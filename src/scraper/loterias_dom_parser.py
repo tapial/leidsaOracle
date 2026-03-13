@@ -258,12 +258,10 @@ class LoteriasDomParser(BaseDrawParser):
                         break
 
         return RawDrawResult(
-            draw_date=draw_date,
+            date_str=draw_date.isoformat(),
             numbers=main_numbers,
-            bonus_number=bonus,
-            game_type=self._game_def.code,
+            bonus=bonus,
             source="scraper",
-            raw_text=block.get_text(" ", strip=True)[:500],
         )
 
     def _parse_table_layout(self, soup: BeautifulSoup) -> list[RawDrawResult]:
@@ -303,12 +301,10 @@ class LoteriasDomParser(BaseDrawParser):
 
                 results.append(
                     RawDrawResult(
-                        draw_date=draw_date,
+                        date_str=draw_date.isoformat(),
                         numbers=main_numbers,
-                        bonus_number=bonus,
-                        game_type=self._game_def.code,
+                        bonus=bonus,
                         source="scraper",
-                        raw_text=row.get_text(" ", strip=True)[:500],
                     )
                 )
 
@@ -354,10 +350,9 @@ class LoteriasDomParser(BaseDrawParser):
 
                 results.append(
                     RawDrawResult(
-                        draw_date=draw_date,
+                        date_str=draw_date.isoformat(),
                         numbers=main_numbers,
-                        bonus_number=bonus,
-                        game_type=self._game_def.code,
+                        bonus=bonus,
                         source="scraper",
                     )
                 )
